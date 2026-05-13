@@ -1,51 +1,22 @@
-const mobileToggle = document.getElementById("mobileToggle");
-const menu = document.getElementById("menu");
+const mobileToggle = document.getElementById('mobileToggle');
+const menu = document.getElementById('menu');
 
-mobileToggle.addEventListener("click", () => {
-
-    if (menu.classList.contains("active")) {
-
-        menu.classList.remove("active");
-        mobileToggle.innerHTML = "☰";
-
+mobileToggle.addEventListener('click', () => {
+    const opened = menu.style.display === 'flex';
+    if (opened) {
+        menu.style.display = '';
+        mobileToggle.textContent = '☰';
     } else {
-
-        menu.classList.add("active");
-        mobileToggle.innerHTML = "✕";
-
+        menu.style.display = 'flex';
+        menu.style.position = 'absolute';
+        menu.style.top = '82px';
+        menu.style.right = '16px';
+        menu.style.flexDirection = 'column';
+        menu.style.padding = '18px';
+        menu.style.background = 'rgba(255,255,255,.98)';
+        menu.style.border = '1px solid rgba(0,0,0,.06)';
+        menu.style.borderRadius = '20px';
+        menu.style.boxShadow = '0 18px 40px rgba(0,0,0,.12)';
+        mobileToggle.textContent = '✕';
     }
-
-});
-
-const form = document.getElementById("whatsappForm");
-
-form.addEventListener("submit", function (e) {
-
-    e.preventDefault();
-
-    const empresa = document.getElementById("empresa").value;
-    const responsavel = document.getElementById("responsavel").value;
-    const telefone = document.getElementById("telefone").value;
-    const servico = document.getElementById("servico").value;
-    const descricao = document.getElementById("descricao").value;
-
-    const mensagem = `
-Olá Luis, gostaria de solicitar um orçamento.
-
-Empresa: ${empresa}
-Responsável: ${responsavel}
-Telefone: ${telefone}
-
-Serviço: ${servico}
-
-Descrição:
-${descricao}
-`;
-
-    const numero = "5519999999999";
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-
-    window.open(url, "_blank");
-
 });
